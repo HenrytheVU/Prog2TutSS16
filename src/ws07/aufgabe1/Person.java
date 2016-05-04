@@ -1,6 +1,6 @@
 package ws07.aufgabe1;
 
-public class Person implements Versteuerbar, Cloneable {
+public class Person implements Versteuerbar, Cloneable, Comparable<Person> {
 
 	private String name;
 	private int alter;
@@ -36,11 +36,15 @@ public class Person implements Versteuerbar, Cloneable {
 				+ jahreseinkommen + ", Steuerermäßigung: " + calcSteuermaessigung();
 	}
 
-	// Crtl + Shift + F
-
 	public static void main(String[] args) {
 		Person p = new Person("Henry", 27, false, 1000000);
 		System.out.println(p);
+	}
+
+	// d
+	@Override
+	public int compareTo(Person o) {
+		return (int) (this.calcSteuerschuld() - o.calcSteuerschuld());
 	}
 
 }
