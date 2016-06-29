@@ -4,10 +4,12 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.HashMap;
 
+import javax.swing.text.html.HTMLDocument.HTMLReader.IsindexAction;
+
 public class Aufgabe2 {
-	
+
 	static HashMap<Character, Integer> hm = new HashMap<Character, Integer>();
-	
+
 	// Str + Shift + O
 	public static void main(String[] args) {
 		hm.put('A', 2);
@@ -52,26 +54,44 @@ public class Aufgabe2 {
 
 			// Lese zeilenweise bis nichts mehr vorhanden ist
 			while ((sCurrentLine = br.readLine()) != null) {
-				
+
 				// sCurrentLine ist unsere aktuelle Zeile
 				char[] charArray = sCurrentLine.toCharArray();
-				
+
 				System.out.println(generateOutput(charArray));
-				
+
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 	}
-	
+
 	public static String generateOutput(char[] charArray) {
 		String result = "";
-		for(int i = 0; i< charArray.length; i++) {
+		for (int i = 0; i < charArray.length; i++) {
 			char c = charArray[i];
-			result += hm.get(c);
+			if(isAllowedChar(c)) {
+				result += hm.get(c);
+			} else {
+				// hier try-catch einsetzen, damit das Programm weiterläuft, auch wenn Exception geworfen wird
+				// Richtig wäre -> throw new IllegalTelefonNumberException(); .Aber man muss das nicht implementieren.
+				// Daher nur -> throw Exception("IllegalTelefonNumberException: " +  c);
+				try {
+					throw new Exception("IllegalTelefonNumberException: " +  c);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
 		}
 		return result;
+	}
+
+	public static boolean isAllowedChar(char c) {
+		if (c < 'A' || c > 'Z') {
+			return false;
+		}
+		return true;
 	}
 
 }
