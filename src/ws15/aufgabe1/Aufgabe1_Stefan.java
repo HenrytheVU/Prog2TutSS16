@@ -32,7 +32,7 @@ public class Aufgabe1_Stefan {
 			osw.close();
 
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 
 	}
