@@ -10,7 +10,7 @@ public class EncryptOutputStream extends OutputStream  {
 	
 	
 	public EncryptOutputStream(OutputStream os, int key) throws IllegalArgumentException {
-		
+		// !(key >0 && key < 255)
 		if( key < 0 || key > 255){
 			throw new IllegalArgumentException("Wrong encryption Key: " + key);
 		}
