@@ -1,0 +1,5 @@
+FaxType=GCLASS2R
+StationId=980809809809
+HeaderLine=Pruefungsamt FHWS
+
+MaxAttempts=5
