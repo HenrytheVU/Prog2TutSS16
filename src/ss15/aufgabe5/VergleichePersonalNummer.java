@@ -1,4 +1,4 @@
-package sose15.aufgabe5;
+package ss15.aufgabe5;
 
 import java.util.Comparator;
 

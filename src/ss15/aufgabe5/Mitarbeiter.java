@@ -1,4 +1,4 @@
-package sose15.aufgabe5;
+package ss15.aufgabe5;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Vector;
 
 // 5. a)
 public class Mitarbeiter implements Serializable {
@@ -41,10 +42,10 @@ public class Mitarbeiter implements Serializable {
 		FileOutputStream fos = null;
 		ObjectOutputStream oos = null;
 
-		Mitarbeiter[] mit = { new Mitarbeiter("Patrick", "Zinßer", 001, 2500), new Mitarbeiter("Jonas", "Klar", 002, 3000),
-				new Mitarbeiter("Thomas", "Müller", 003, 4500) };
+		Mitarbeiter[] mit = { new Mitarbeiter("Patrick", "Zinï¿½er", 001, 2500), new Mitarbeiter("Jonas", "Klar", 002, 3000),
+				new Mitarbeiter("Thomas", "Mï¿½ller", 003, 4500) };
 		try {
-			fos = new FileOutputStream("/data/mitarbeiter.dat");
+			fos = new FileOutputStream("data/mitarbeiter.dat");
 			oos = new ObjectOutputStream(fos);
 			oos.writeObject(mit);
 			oos.close();
@@ -60,7 +61,7 @@ public class Mitarbeiter implements Serializable {
 		FileInputStream fis;
 		ObjectInputStream ois;
 		try {
-			fis = new FileInputStream("/data/mitarbeiter.dat");
+			fis = new FileInputStream("data/mitarbeiter.dat");
 			ois = new ObjectInputStream(fis);
 			Object o = ois.readObject();
 			while (o != null) {
@@ -83,6 +84,8 @@ public class Mitarbeiter implements Serializable {
 	
 	// e
 	public static Mitarbeiter[] sortiere(Collection<Mitarbeiter> team){
+		
+		Vector<Mitarbeiter> vector = new Vector<>();
 		Mitarbeiter[] liste = team.toArray(new Mitarbeiter[team.size()] );
 		Arrays.sort(liste, new VergleichePersonalNummer());		
 		return liste;
